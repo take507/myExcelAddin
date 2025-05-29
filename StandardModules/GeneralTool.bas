@@ -1,15 +1,15 @@
-Sub èµ¤æ è¿½åŠ ()
+Sub Ô˜g’Ç‰Á()
     With ActiveSheet.Shapes.AddShape(msoShapeRectangle, Selection.Left, Selection.Top, Selection.Width, Selection.Height)
-        ' å¡—ã‚Šã¤ã¶ã—ç„¡ã—
+        ' “h‚è‚Â‚Ô‚µ–³‚µ
         .Fill.Visible = msoFalse
-        ' ç½«ç·šè¨­å®š
+        ' Œrüİ’è
         .Line.Visible = msoTrue
         .Line.ForeColor.RGB = RGB(255, 0, 0)
         .Line.Transparency = 0
         .Line.Weight = 3
     End With
 End Sub
-Sub èµ¤çŸ¢å°è¿½åŠ ()
+Sub Ô–îˆó’Ç‰Á()
     With ActiveSheet.Shapes.AddConnector(msoConnectorStraight, Selection.Left, Selection.Top, Selection.Left + Selection.Width, Selection.Top + Selection.Height)
         .Line.ForeColor.RGB = RGB(255, 0, 0)
         .Line.BeginArrowheadStyle = msoArrowheadNone
@@ -20,9 +20,9 @@ Sub èµ¤çŸ¢å°è¿½åŠ ()
         .Line.EndArrowheadWidth = msoArrowheadWide
     End With
 End Sub
-Sub ãƒ•ã‚¡ã‚¤ãƒ«ã®å ´æ‰€ã‚’é–‹ã()
+Sub ƒtƒ@ƒCƒ‹‚ÌêŠ‚ğŠJ‚­()
     Shell "explorer.exe " & ActiveWorkbook.Path, vbNormalFocus
 End Sub
-Sub ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ä¿æŒ()
+Sub ƒtƒ@ƒCƒ‹ƒpƒX‚ğƒNƒŠƒbƒvƒ{[ƒh•Û()
     ClipBoardSave (ActiveWorkbook.FullName)
 End Sub

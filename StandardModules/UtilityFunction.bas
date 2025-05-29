@@ -1,4 +1,4 @@
-'ã‚¯ãƒªãƒƒãƒ–ãƒœãƒ¼ãƒ‰ã¸ã®ã‚³ãƒ“ãƒ¼
+'ƒNƒŠƒbƒuƒ{[ƒh‚Ö‚ÌƒRƒr[
 Public Function ClipBoardSave(temp As String)
 'https://vba-create.jp/vba-error-clipboard-copy/
     With CreateObject("Forms.TextBox.1")
@@ -10,30 +10,30 @@ Public Function ClipBoardSave(temp As String)
     End With
 End Function
 
-' Sheets ã«æŒ‡å®šã—ãŸåå‰ã®ã‚·ãƒ¼ãƒˆãŒå­˜åœ¨ã™ã‚‹ã‹åˆ¤å®šã™ã‚‹
+' Sheets ‚Éw’è‚µ‚½–¼‘O‚ÌƒV[ƒg‚ª‘¶İ‚·‚é‚©”»’è‚·‚é
 Public Function ExistsSheet(ByVal sheetName As String)
     Dim ws As Variant
     For Each ws In Sheets
         If LCase(ws.name) = LCase(sheetName) Then
-            ExistsSheet = True 'å­˜åœ¨ã™ã‚‹
+            ExistsSheet = True '‘¶İ‚·‚é
             Exit Function
         End If
     Next
-    'å­˜åœ¨ã—ãªã„
+    '‘¶İ‚µ‚È‚¢
     ExistsSheet = False
 End Function
-' Sheets ã«æŒ‡å®šã—ãŸåå‰ã®ã‚·ãƒ¼ãƒˆãŒå­˜åœ¨ã™ã‚‹ã‹åˆ¤å®šã™ã‚‹
+' Sheets ‚Éw’è‚µ‚½–¼‘O‚ÌƒV[ƒg‚ª‘¶İ‚·‚é‚©”»’è‚·‚é
 Public Function ExistsShape(sheet As Worksheet, shapeName As String)
     For Each objShp In sheet.Shapes
         If objShp.name = shapeName Then
-            ExistsShape = True 'å­˜åœ¨ã™ã‚‹
+            ExistsShape = True '‘¶İ‚·‚é
             Exit Function
         End If
     Next
-    'å­˜åœ¨ã—ãªã„
+    '‘¶İ‚µ‚È‚¢
     ExistsShape = False
 End Function
-' ã‚³ãƒãƒ³ãƒ‰ã‚’å®Ÿè¡Œ
+' ƒRƒ}ƒ“ƒh‚ğÀs
 Public Function RunCmd(cmd As String) As String
     Dim wsh As New IWshRuntimeLibrary.WshShell
     Dim ret As Long

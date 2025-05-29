@@ -1,10 +1,10 @@
-' ã‚¢ãƒ‰ã‚¤ãƒ³ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«æ™‚å‡¦ç†
+' ƒAƒhƒCƒ“ƒCƒ“ƒXƒg[ƒ‹Žžˆ—
 Private Sub Workbook_AddinInstall()
     Set m_Application = Application
     Call addinInstall
 End Sub
 
-' ã‚¢ãƒ‰ã‚¤ãƒ³ã‚¢ãƒ³ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«æ™‚å‡¦ç†
+' ƒAƒhƒCƒ“ƒAƒ“ƒCƒ“ƒXƒg[ƒ‹Žžˆ—
 Private Sub Workbook_AddinUninstall()
     Call addinUninstall
 End Sub

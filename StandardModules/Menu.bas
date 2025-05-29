@@ -1,5 +1,5 @@
 
-' ã‚¢ãƒ‰ã‚¤ãƒ³ã®ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«
+' ƒAƒhƒCƒ“‚ÌƒCƒ“ƒXƒg[ƒ‹
 Sub addinInstall()
 
     'On Error GoTo ErrHand
@@ -8,31 +8,31 @@ Sub addinInstall()
     For Each cmdbar In Application.CommandBars
         If cmdbar.name = "Cell" Or cmdbar.name = "List Range Popup" Then
             With cmdbar.Controls.Add(Type:=msoControlPopup, before:=1)
-                .caption = "æ±ç”¨ãƒ„ãƒ¼ãƒ«"
+                .caption = "”Ä—pƒc[ƒ‹"
                 With .Controls.Add
-                    .caption = "èµ¤æ è¿½åŠ "
-                    .OnAction = "èµ¤æ è¿½åŠ "
+                    .caption = "Ô˜g’Ç‰Á"
+                    .OnAction = "Ô˜g’Ç‰Á"
                 End With
                 With .Controls.Add
-                    .caption = "èµ¤çŸ¢å°è¿½åŠ "
-                    .OnAction = "èµ¤çŸ¢å°è¿½åŠ "
+                    .caption = "Ô–îˆó’Ç‰Á"
+                    .OnAction = "Ô–îˆó’Ç‰Á"
                 End With
                 With .Controls.Add
-                    .caption = "ãƒ•ã‚¡ã‚¤ãƒ«ã®å ´æ‰€ã‚’é–‹ã"
-                    .OnAction = "ãƒ•ã‚¡ã‚¤ãƒ«ã®å ´æ‰€ã‚’é–‹ã"
+                    .caption = "ƒtƒ@ƒCƒ‹‚ÌêŠ‚ğŠJ‚­"
+                    .OnAction = "ƒtƒ@ƒCƒ‹‚ÌêŠ‚ğŠJ‚­"
                 End With
                 With .Controls.Add
-                    .caption = "ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ä¿æŒ"
-                    .OnAction = "ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ä¿æŒ"
+                    .caption = "ƒtƒ@ƒCƒ‹ƒpƒX‚ğƒNƒŠƒbƒvƒ{[ƒh•Û"
+                    .OnAction = "ƒtƒ@ƒCƒ‹ƒpƒX‚ğƒNƒŠƒbƒvƒ{[ƒh•Û"
                 End With
             End With
-            ' ç½«ç·š
+            ' Œrü
             cmdbar.Controls(2).BeginGroup = True
         End If
     Next
 End Sub
 
-' ã‚¢ãƒ‰ã‚¤ãƒ³ã®ã‚¢ãƒ³ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«
+' ƒAƒhƒCƒ“‚ÌƒAƒ“ƒCƒ“ƒXƒg[ƒ‹
 Sub addinUninstall()
 
     For Each cmdbar In Application.CommandBars
