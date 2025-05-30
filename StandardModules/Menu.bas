@@ -29,6 +29,15 @@ Sub addinInstall()
             ' årê¸
             cmdbar.Controls(2).BeginGroup = True
         End If
+
+        If cmdbar.name = "Worksheet Menu Bar" Then
+            With cmdbar.Controls.Add(Type:=msoControlButton)
+                .caption = "SVNÉçÉO"
+                .OnAction = "SVNÉçÉO"
+                .Style = msoButtonCaption
+            End With
+            
+        End If
     Next
 End Sub
 
@@ -36,10 +45,11 @@ End Sub
 Sub addinUninstall()
 
     For Each cmdbar In Application.CommandBars
-        If cmdbar.name = "Cell" Or cmdbar.name = "List Range Popup" Then
+        If cmdbar.name = "Cell" Or cmdbar.name = "List Range Popup" Or cmdbar.name = "Worksheet Menu Bar" Then
             cmdbar.Reset
         End If
+        
     Next
-
+    
     Set cbrCmd = Nothing
 End Sub
