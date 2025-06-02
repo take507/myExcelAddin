@@ -21,7 +21,7 @@ Sub 赤矢印追加()
     End With
 End Sub
 Sub ファイルの場所を開く()
-    Shell "explorer.exe " & ActiveWorkbook.Path, vbNormalFocus
+    Shell "explorer.exe /select," & ActiveWorkbook.FullName, vbNormalFocus
 End Sub
 Sub ファイルパスをクリップボード保持()
     ClipBoardSave (ActiveWorkbook.FullName)
