@@ -1,4 +1,4 @@
-Function SVNÉçÉO()
+Function SVNlog()
 
     Dim cmd As String
     cmd = ""
@@ -7,6 +7,5 @@ Function SVNÉçÉO()
     cmd = cmd & " /path " & ActiveWorkbook.FullName
 
     Call Shell(cmd, vbNormalFocus)
-    
 
 End Function
