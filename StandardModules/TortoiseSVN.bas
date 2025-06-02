@@ -4,7 +4,7 @@ Function SVNÉçÉO()
     cmd = ""
     cmd = cmd & "TortoiseProc.exe"
     cmd = cmd & " /command:log"
-    cmd = cmd & " /path " & ActiveWorkbook.Path
+    cmd = cmd & " /path " & ActiveWorkbook.FullName
 
     Call Shell(cmd, vbNormalFocus)
     
