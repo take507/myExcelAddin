@@ -91,3 +91,12 @@ CleanUp:
     Application.ScreenUpdating = True
 
 End Sub
+Sub ÉVÅ[ÉgàÍóó()
+
+    For Each sheet In Worksheets
+        If sheet.Visible = True Then
+            Debug.Print sheet.name
+        End If
+    Next
+
+End Sub
