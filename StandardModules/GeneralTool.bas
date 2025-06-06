@@ -26,6 +26,22 @@ End Sub
 Sub ファイルパスをクリップボード保持()
     ClipBoardSave (ActiveWorkbook.FullName)
 End Sub
+Sub 無効な名前の定義の削除()
+    
+    ' 名前の定義の件数分ループ
+    Dim name As Object
+    For Each name In Names
+        ' 表示にする
+        name.Visible = True
+        ' 参照先がエラーになっている
+        If InStr(name.RefersTo, "#REF") > 0 Then
+            Debug.Print ("無効な名前の定義の削除[name:" & name.name & ",RefersTo" & name.RefersTo & "]")
+            ' 削除する
+            name.Delete
+        End If
+    Next
+
+End Sub
 
 Sub シート一覧()
 
