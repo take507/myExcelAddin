@@ -24,13 +24,8 @@ Sub シートの整理(book As Workbook)
     Next
     ' 先頭のシートを選択した状態にする
     book.Worksheets(1).Activate
-    
-    ' 名前の定義の件数分ループ
-    Dim name As Object
-    For Each name In Names
-        ' 表示にする
-        name.Visible = True
-    Next
+
+    Call 無効な名前の定義の削除
 
     Application.ScreenUpdating = True
     Exit Sub
