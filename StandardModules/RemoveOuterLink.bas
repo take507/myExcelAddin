@@ -1,4 +1,26 @@
-Sub 外部参照を置換(ws As Worksheet)
+Sub ブック内の外部参照を置換()
+    ' ----------------------------------------------------
+    ' パフォーマンス向上のための設定
+    ' ----------------------------------------------------
+    Application.ScreenUpdating = False
+    Application.EnableEvents = False
+    Application.Calculation = xlCalculationManual
+
+    For Each sheet In Worksheets
+        シート内の外部参照を置換 (sheet)
+    Next
+
+CleanUp:
+    ' ----------------------------------------------------
+    ' 処理後に設定を元に戻す
+    ' ----------------------------------------------------
+    Application.Calculation = xlCalculationAutomatic
+    Application.EnableEvents = True
+    Application.ScreenUpdating = True
+
+End Sub
+
+Sub シート内の外部参照を置換(ws As Worksheet)
 
     Dim targetRange As Range
     Dim formulaArray As Variant
@@ -8,19 +30,11 @@ Sub 外部参照を置換(ws As Worksheet)
     Dim cellFormula As String
 
     ' ----------------------------------------------------
-    ' パフォーマンス向上のための設定
-    ' ----------------------------------------------------
-    Application.ScreenUpdating = False
-    Application.EnableEvents = False
-    Application.Calculation = xlCalculationManual
-
-    ' ----------------------------------------------------
     ' 処理対象の動的な範囲を設定
     ' ----------------------------------------------------
     If ws.UsedRange.Cells.count = 1 And IsEmpty(ws.UsedRange.Cells(1, 1).Value) Then
-        GoTo CleanUp
+        Exit Sub
     End If
-
     
     ' ----------------------------------------------------
     ' 設定した範囲の数式をチェック
@@ -35,14 +49,6 @@ Sub 外部参照を置換(ws As Worksheet)
         Next c
     Next r
     targetRange.Formula = formulaArray
-
-CleanUp:
-    ' ----------------------------------------------------
-    ' 処理後に設定を元に戻す
-    ' ----------------------------------------------------
-    Application.Calculation = xlCalculationAutomatic
-    Application.EnableEvents = True
-    Application.ScreenUpdating = True
 
 End Sub
 
