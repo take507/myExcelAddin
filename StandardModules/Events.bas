@@ -26,8 +26,10 @@ Sub シートの整理(book As Workbook)
     book.Worksheets(1).Activate
 
     Call 無効な名前の定義の削除
+    Call スタイルフォント調整
 
     Application.ScreenUpdating = True
     Exit Sub
           
 End Sub
+

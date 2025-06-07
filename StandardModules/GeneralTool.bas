@@ -42,7 +42,18 @@ Sub 無効な名前の定義の削除()
     Next
 
 End Sub
-
+Sub スタイルフォント調整()
+    Dim normalStyle As Style
+    Set normalStyle = ActiveWorkbook.Styles("Normal")
+    normalStyle.Font.name = Range("A1").Font.name
+    
+    For Each vStyle In ActiveWorkbook.Styles
+        If (vStyle.name = "Hyperlink" Or vStyle.name = "Followed Hyperlink") And vStyle.BuiltIn = True Then
+            vStyle.Font.name = normalStyle.Font.name
+            vStyle.Font.Size = normalStyle.Font.Size
+        End If
+    Next
+End Sub
 Sub シート一覧()
 
     For Each sheet In Worksheets
