@@ -17,14 +17,6 @@ Sub addinInstall()
                     .caption = "赤矢印追加"
                     .OnAction = "赤矢印追加"
                 End With
-                With .Controls.Add
-                    .caption = "ファイルの場所を開く"
-                    .OnAction = "ファイルの場所を開く"
-                End With
-                With .Controls.Add
-                    .caption = "ファイルパスをクリップボード保持"
-                    .OnAction = "ファイルパスをクリップボード保持"
-                End With
             End With
             ' 罫線
             cmdbar.Controls(2).BeginGroup = True
@@ -32,11 +24,20 @@ Sub addinInstall()
 
         If cmdbar.name = "Worksheet Menu Bar" Then
             With cmdbar.Controls.Add(Type:=msoControlButton)
+                .caption = "ファイルの場所を開く"
+                .OnAction = "ファイルの場所を開く"
+                .Style = msoButtonCaption
+            End With
+            With cmdbar.Controls.Add(Type:=msoControlButton)
+                .caption = "ファイルパスをクリップボード保持"
+                .OnAction = "ファイルパスをクリップボード保持"
+                .Style = msoButtonCaption
+            End With
+            With cmdbar.Controls.Add(Type:=msoControlButton)
                 .caption = "SVNログ"
                 .OnAction = "SVNログ"
                 .Style = msoButtonCaption
             End With
-            
         End If
     Next
 End Sub
