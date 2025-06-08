@@ -131,12 +131,10 @@ End Sub
 
 Sub CreateNewSheetWithTableAndAllSettingsFiltered()
     Dim ws As Worksheet
-    Dim lo As ListObject ' ListObjectはテーブルを表すオブジェクトです
+    Dim lo As ListObject
 
-    ' 新しいシートを作成し、変数に格納
     Set ws = Sheets.Add
 
-    ' シート名を付ける場合は以下の行のコメントを外してください
     ' ws.Name = "タスク管理表"
 
     ' シート全体のフォントを設定
@@ -155,50 +153,44 @@ Sub CreateNewSheetWithTableAndAllSettingsFiltered()
     ws.Cells(1, 7).Value = "確認日"
     ws.Cells(1, 8).Value = "確認者"
 
-    ' 1行目のセル範囲（A1からH1）の書式設定
     With ws.Range("A1:H1")
-        .Font.Color = RGB(255, 255, 255) ' 文字色を白に設定 (R=255, G=255, B=255)
-        .Interior.Color = RGB(0, 0, 128) ' 背景色を紺色に設定 (R=0, G=0, B=128)
-        .Font.Bold = True ' 文字を太字にする
-        .VerticalAlignment = xlVAlignCenter ' 垂直方向中央揃え
-        .HorizontalAlignment = xlHAlignCenter ' 水平方向中央揃え
+        .Font.Color = RGB(255, 255, 255)
+        .Interior.Color = RGB(0, 0, 128)
+        .Font.Bold = True
+        .VerticalAlignment = xlVAlignCenter
+        .HorizontalAlignment = xlHAlignCenter
     End With
 
     ' 列幅を自動調整 (オプション)
     ' ws.Columns("A:H").AutoFit
 
     ' テーブルの作成とスタイル適用
-    ' 項目名を含む範囲A1:H1をテーブルとして定義
     Set lo = ws.ListObjects.Add(xlSrcRange, ws.Range("A1:H1"), , xlYes)
 
-    ' テーブルに名前を付ける (任意)
     lo.name = "タスク管理テーブル"
 
     ' テーブルスタイルを適用
-    lo.TableStyle = "TableStyleMedium2" ' 例: "TableStyleMedium2"
+    lo.TableStyle = "TableStyleMedium2"
 
-    ' ヘッダー行のフィルターボタンを**表示**にする (True)
     lo.ShowAutoFilter = True
 
-    ' 縞模様を有効にする場合は True に設定
+    ' 縞模様
     lo.ShowTableStyleRowStripes = True
-    ' テーブルに合計行を表示する場合は True に設定
+    ' 合計行
     lo.ShowTotals = False
-    ' 最初の列に特別な書式を適用する場合は True に設定
+    ' 最初の列に特別な書式を適用する
     lo.ShowTableStyleFirstColumn = False
-    ' 最後の列に特別な書式を適用する場合は True に設定
+    ' 最後の列に特別な書式を適用する
     lo.ShowTableStyleLastColumn = False
-
 
     ' ウィンドウ枠をB2セルで固定
     With Application.ActiveWindow
-        .FreezePanes = False ' 既存のウィンドウ枠固定を解除 (念のため)
-        ws.Activate ' シートをアクティブにする
-        ws.Range("B2").Select ' B2セルを選択
-        .FreezePanes = True ' ウィンドウ枠を固定
+        .FreezePanes = False
+        ws.Activate
+        ws.Range("B2").Selec
+        .FreezePanes = True
     End With
 
-    ' A列からH列のすべてのセルに罫線を引く
     With ws.Columns("A:H")
         .Borders(xlEdgeLeft).LineStyle = xlContinuous ' 左罫線
         .Borders(xlEdgeTop).LineStyle = xlContinuous ' 上罫線
@@ -206,13 +198,10 @@ Sub CreateNewSheetWithTableAndAllSettingsFiltered()
         .Borders(xlEdgeBottom).LineStyle = xlContinuous ' 下罫線
         .Borders(xlInsideVertical).LineStyle = xlContinuous ' 垂直方向の内部罫線
         .Borders(xlInsideHorizontal).LineStyle = xlContinuous ' 水平方向の内部罫線
-        .Borders.Color = RGB(192, 192, 192) ' 罫線の色を灰色にする (任意)
+        .Borders.Color = RGB(192, 192, 192) ' 罫線の色を灰色にする
     End With
 
-    ' I列以降を非表示にする
     ws.Columns("I:XFD").Hidden = True
-
-    MsgBox "新しいシートが作成され、すべての設定が完了しました。", vbInformation
 
 End Sub
 
