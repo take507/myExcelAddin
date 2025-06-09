@@ -43,7 +43,7 @@ Function 吹き出し作成() As shape
     Set 吹き出し作成 = shape
 End Function
 
-Sub 吹き出し追加_1()
+Sub 吹き出し追加_赤()
 
     Dim shape As shape
     Set shape = 吹き出し作成
@@ -60,7 +60,7 @@ Sub 吹き出し追加_1()
     End With
 
 End Sub
-Sub 吹き出し追加_2()
+Sub 吹き出し追加_黄()
 
     Dim shape As shape
     Set shape = 吹き出し作成
@@ -77,7 +77,7 @@ Sub 吹き出し追加_2()
     End With
 
 End Sub
-Sub 吹き出し追加_3()
+Sub 吹き出し追加_青()
 
     Dim shape As shape
     Set shape = 吹き出し作成
@@ -94,7 +94,7 @@ Sub 吹き出し追加_3()
     End With
 
 End Sub
-Sub 吹き出し追加_4()
+Sub 吹き出し追加_緑()
 
     Dim shape As shape
     Set shape = 吹き出し作成
@@ -111,16 +111,16 @@ Sub 吹き出し追加_4()
     End With
 
 End Sub
-Sub 吹き出し追加_5()
+Sub 吹き出し追加_紫()
 
     Dim shape As shape
     Set shape = 吹き出し作成
 
     With shape
         '背景色
-        .Fill.ForeColor.RGB = RGB(255, 204, 153)
+        .Fill.ForeColor.RGB = RGB(220, 185, 255)
         '罫線色
-        .Line.ForeColor.RGB = RGB(237, 126, 51)
+        .Line.ForeColor.RGB = RGB(112, 48, 169)
         '文字色
         .TextFrame2.TextRange.Font.Fill.ForeColor.RGB = RGB(133, 61, 13)
         '入力文字
@@ -342,3 +342,5 @@ Sub メモ一覧更新()
     End If
 
 End Sub
+
+
