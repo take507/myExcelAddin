@@ -37,9 +37,9 @@ Sub addinInstall()
                     .OnAction = "吹き出し追加_紫"
                 End With
                 With .Controls.Add
-                    .caption = "指摘事項一覧更新"
+                    .caption = "吹き出し一覧更新"
                     .FaceId = 274
-                    .OnAction = "指摘事項一覧更新"
+                    .OnAction = "吹き出し一覧更新"
                     .BeginGroup = True
                 End With
             End With

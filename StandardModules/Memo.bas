@@ -135,7 +135,7 @@ Sub CreateNewSheetWithTableAndAllSettingsFiltered()
 
     Set ws = Sheets.Add
 
-    ' ws.Name = "タスク管理表"
+    ws.name = "吹き出し一覧"
 
     ' シート全体のフォントを設定
     With ws.Cells.Font
@@ -155,7 +155,6 @@ Sub CreateNewSheetWithTableAndAllSettingsFiltered()
 
     With ws.Range("A1:H1")
         .Font.Color = RGB(255, 255, 255)
-        .Interior.Color = RGB(0, 0, 128)
         .Font.Bold = True
         .VerticalAlignment = xlVAlignCenter
         .HorizontalAlignment = xlHAlignCenter
@@ -174,6 +173,7 @@ Sub CreateNewSheetWithTableAndAllSettingsFiltered()
 
     lo.ShowAutoFilter = True
 
+    lo.HeaderRowRange.Interior.Color = RGB(64, 84, 106)
     ' 縞模様
     lo.ShowTableStyleRowStripes = True
     ' 合計行
@@ -187,7 +187,7 @@ Sub CreateNewSheetWithTableAndAllSettingsFiltered()
     With Application.ActiveWindow
         .FreezePanes = False
         ws.Activate
-        ws.Range("B2").Selec
+        ws.Range("B2").Select
         .FreezePanes = True
     End With
 
@@ -202,14 +202,15 @@ Sub CreateNewSheetWithTableAndAllSettingsFiltered()
     End With
 
     ws.Columns("I:XFD").Hidden = True
+    ws.Range("A2").Formula = "=ROW()-1"
 
 End Sub
 
-Sub メモ一覧更新()
+Sub 吹き出し一覧更新()
 
     Application.ScreenUpdating = False
 
-    Const SHEET_NAME_REV As String = "メモ一覧"
+    Const SHEET_NAME_REV As String = "吹き出し一覧"
     Const COL_SHAPE_ID As Integer = 2
     Const COL_REVIEW_COMMENT As Integer = 3
     Const COL_SHEET_NAME As Integer = 4
@@ -221,7 +222,7 @@ Sub メモ一覧更新()
 
 
     If ExistsSheet(SHEET_NAME_REV) = False Then
-        ThisWorkbook.Sheets(SHEET_NAME_REV).Copy After:=Worksheets(Worksheets.Count)
+        Call CreateNewSheetWithTableAndAllSettingsFiltered
     End If
 
     Dim revSheet As Worksheet
@@ -278,6 +279,7 @@ Sub メモ一覧更新()
                         .Range(COL_SHAPE_ID).Value = shape.name
                         .Range(COL_REVIEW_COMMENT).Value = shape.TextFrame2.TextRange.Characters.text
                         .Range(COL_SHEET_NAME).Value = "=HYPERLINK(""#" + sheet.name + "!" + shape.TopLeftCell.Address + """,""" + sheet.name + """)"
+                        .Interior.Pattern = xlNone
                     End With
                     addCnt = addCnt + 1
                 End If
@@ -342,5 +344,3 @@ Sub メモ一覧更新()
     End If
 
 End Sub
-
-
