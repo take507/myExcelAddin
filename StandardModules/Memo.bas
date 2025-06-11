@@ -153,33 +153,24 @@ Sub CreateNewSheetWithTableAndAllSettingsFiltered()
     ws.Cells(1, 7).Value = "確認日"
     ws.Cells(1, 8).Value = "確認者"
 
-    With ws.Range("A1:H1")
-        .Font.Color = RGB(255, 255, 255)
-        .Font.Bold = True
-        .VerticalAlignment = xlVAlignCenter
-        .HorizontalAlignment = xlHAlignCenter
-    End With
-
-    ' 列幅を自動調整 (オプション)
-    ' ws.Columns("A:H").AutoFit
+    ' 列幅を自動調整
+    ws.Columns("A:H").AutoFit
 
     ' テーブルの作成とスタイル適用
     Set lo = ws.ListObjects.Add(xlSrcRange, ws.Range("A1:H1"), , xlYes)
 
-    lo.name = "タスク管理テーブル"
-
     ' テーブルスタイルを適用
     lo.TableStyle = "TableStyleMedium2"
-
+    ' オートフィルタ設定
     lo.ShowAutoFilter = True
-
-    lo.HeaderRowRange.Interior.Color = RGB(64, 84, 106)
     ' 縞模様
     lo.ShowTableStyleRowStripes = True
     ' 合計行
     lo.ShowTotals = False
     ' 最初の列に特別な書式を適用する
-    lo.ShowTableStyleFirstColumn = False
+    lo.ShowTableStyleFirstColumn = True
+    ' ヘッダ行背景色
+    lo.HeaderRowRange.Interior.Color = RGB(64, 84, 106)
     ' 最後の列に特別な書式を適用する
     lo.ShowTableStyleLastColumn = False
 
@@ -192,13 +183,13 @@ Sub CreateNewSheetWithTableAndAllSettingsFiltered()
     End With
 
     With ws.Columns("A:H")
-        .Borders(xlEdgeLeft).LineStyle = xlContinuous ' 左罫線
-        .Borders(xlEdgeTop).LineStyle = xlContinuous ' 上罫線
-        .Borders(xlEdgeRight).LineStyle = xlContinuous ' 右罫線
-        .Borders(xlEdgeBottom).LineStyle = xlContinuous ' 下罫線
-        .Borders(xlInsideVertical).LineStyle = xlContinuous ' 垂直方向の内部罫線
-        .Borders(xlInsideHorizontal).LineStyle = xlContinuous ' 水平方向の内部罫線
-        .Borders.Color = RGB(192, 192, 192) ' 罫線の色を灰色にする
+        .Borders(xlEdgeLeft).LineStyle = xlContinuous
+        .Borders(xlEdgeTop).LineStyle = xlContinuous
+        .Borders(xlEdgeRight).LineStyle = xlContinuous
+        .Borders(xlEdgeBottom).LineStyle = xlContinuous
+        .Borders(xlInsideVertical).LineStyle = xlContinuous
+        .Borders(xlInsideHorizontal).LineStyle = xlContinuous
+        .Borders.Color = RGB(192, 192, 192)
     End With
 
     ws.Columns("I:XFD").Hidden = True
