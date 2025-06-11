@@ -153,9 +153,6 @@ Sub CreateNewSheetWithTableAndAllSettingsFiltered()
     ws.Cells(1, 7).Value = "確認日"
     ws.Cells(1, 8).Value = "確認者"
 
-    ' 列幅を自動調整
-    ws.Columns("A:H").AutoFit
-
     ' テーブルの作成とスタイル適用
     Set lo = ws.ListObjects.Add(xlSrcRange, ws.Range("A1:H1"), , xlYes)
 
@@ -168,11 +165,11 @@ Sub CreateNewSheetWithTableAndAllSettingsFiltered()
     ' 合計行
     lo.ShowTotals = False
     ' 最初の列に特別な書式を適用する
-    lo.ShowTableStyleFirstColumn = True
-    ' ヘッダ行背景色
-    lo.HeaderRowRange.Interior.Color = RGB(64, 84, 106)
+    lo.ShowTableStyleFirstColumn = False
     ' 最後の列に特別な書式を適用する
     lo.ShowTableStyleLastColumn = False
+    ' ヘッダ行背景色
+    lo.HeaderRowRange.Interior.Color = RGB(64, 84, 106)
 
     ' ウィンドウ枠をB2セルで固定
     With Application.ActiveWindow
@@ -194,6 +191,9 @@ Sub CreateNewSheetWithTableAndAllSettingsFiltered()
 
     ws.Columns("I:XFD").Hidden = True
     ws.Range("A2").Formula = "=ROW()-1"
+
+    ' 列幅を自動調整
+    ws.Columns("A:H").AutoFit
 
 End Sub
 
