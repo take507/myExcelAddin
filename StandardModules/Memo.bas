@@ -139,7 +139,7 @@ Sub CreateNewSheetWithTableAndAllSettingsFiltered()
 
     ' シート全体のフォントを設定
     With ws.Cells.Font
-        .name = "Meiryo UI" ' または "メイリオ" でも可
+        .name = "Meiryo UI"
         .Size = 9
     End With
 
