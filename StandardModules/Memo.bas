@@ -279,7 +279,6 @@ Sub ‚«o‚µˆê——XV()
                         .Range(COL_SHAPE_ID).Value = shape.name
                         .Range(COL_REVIEW_COMMENT).Value = shape.TextFrame2.TextRange.Characters.text
                         .Range(COL_SHEET_NAME).Value = "=HYPERLINK(""#" + sheet.name + "!" + shape.TopLeftCell.Address + """,""" + sheet.name + """)"
-                        .Interior.Pattern = xlNone
                     End With
                     addCnt = addCnt + 1
                 End If
