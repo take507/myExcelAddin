@@ -214,6 +214,9 @@ Sub 吹き出し一覧更新()
 
     If ExistsSheet(SHEET_NAME_REV) = False Then
         Call CreateNewSheetWithTableAndAllSettingsFiltered
+        Columns("C").ColumnWidth = 40
+        Columns("D").ColumnWidth = 20
+        Columns("E").ColumnWidth = 40
     End If
 
     Dim revSheet As Worksheet
@@ -231,6 +234,7 @@ Sub 吹き出し一覧更新()
     addCnt = 0
     delCnt = 0
 
+    Application.AutoCorrect.AutoFillFormulasInLists = False
     'シートの件数分ループ
     Dim sheet As Worksheet
     For Each sheet In ActiveWorkbook.Worksheets
@@ -269,7 +273,7 @@ Sub 吹き出し一覧更新()
                     With listObj.ListRows.Add
                         .Range(COL_SHAPE_ID).Value = shape.name
                         .Range(COL_REVIEW_COMMENT).Value = shape.TextFrame2.TextRange.Characters.text
-                        .Range(COL_SHEET_NAME).Value = "=HYPERLINK(""#" + sheet.name + "!" + shape.TopLeftCell.Address + """,""" + sheet.name + """)"
+                        .Range(COL_SHEET_NAME).Value = "=HYPERLINK(""#'" + sheet.name + "'!" + shape.TopLeftCell.Address + """,""" + sheet.name + """)"
                     End With
                     addCnt = addCnt + 1
                 End If
@@ -316,6 +320,7 @@ Sub 吹き出し一覧更新()
         End With
 
     Next
+    Application.AutoCorrect.AutoFillFormulasInLists = True
 
     Worksheets(1).Select
     Application.ScreenUpdating = True
