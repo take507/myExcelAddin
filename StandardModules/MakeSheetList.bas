@@ -228,6 +228,7 @@ Sub ğŒ•t‚«‘®ˆê——()
             ws.Cells(row, 5).Value = fc.Priority
             ws.Cells(row, 6).Value = "'" & fc.Formula1
             row = row + 1
+            If row Mod 100 = 0 Then DoEvents
         Next
     Next
     
