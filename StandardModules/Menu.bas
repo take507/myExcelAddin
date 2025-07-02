@@ -53,6 +53,10 @@ Sub addinInstall()
                     .caption = "Ô–îˆó’Ç‰Á"
                     .OnAction = "Ô–îˆó’Ç‰Á"
                 End With
+                With .Controls.Add
+                    .caption = "–ÔŠ|‚¯’Ç‰Á"
+                    .OnAction = "–ÔŠ|‚¯’Ç‰Á"
+                End With
             End With
             ' Œrü
             cmdbar.Controls(3).BeginGroup = True

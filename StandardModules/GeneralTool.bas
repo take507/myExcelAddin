@@ -20,6 +20,28 @@ Sub 赤矢印追加()
         .Line.EndArrowheadWidth = msoArrowheadWide
     End With
 End Sub
+Sub 網掛け追加()
+    With ActiveSheet.Shapes.AddShape(msoShapeRectangle, Selection.Left, Selection.Top, Selection.Width, Selection.Height)
+        ' 塗りつぶし
+        .Fill.Visible = msoTrue
+        .Fill.Transparency = 0.25
+        .Fill.ForeColor.RGB = RGB(127, 127, 127)
+        ' 罫線設定
+        .Line.Visible = msoTrue
+        .Line.ForeColor.RGB = RGB(0, 0, 0)
+        .Line.Transparency = 0
+        .Line.Weight = 1
+        '入力文字
+        .TextFrame2.TextRange.Characters.text = "削除"
+        'フォント
+        .TextFrame2.TextRange.Font.Fill.ForeColor.RGB = RGB(192, 0, 0)
+        .TextFrame2.TextRange.Font.Size = 16
+        .TextFrame2.TextRange.Font.NameComplexScript = "メイリオ"
+        .TextFrame2.TextRange.Font.NameFarEast = "メイリオ"
+        .TextFrame2.TextRange.Font.name = "メイリオ"
+        .TextFrame2.TextRange.Font.Bold = True
+    End With
+End Sub
 Sub ファイルの場所を開く()
     Shell "explorer.exe /select," & ActiveWorkbook.FullName, vbNormalFocus
 End Sub
