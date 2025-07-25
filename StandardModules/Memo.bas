@@ -157,7 +157,7 @@ Sub CreateNewSheetWithTableAndAllSettingsFiltered()
     Set lo = ws.ListObjects.Add(xlSrcRange, ws.Range("A1:H1"), , xlYes)
 
     ' テーブルスタイルを適用
-    lo.TableStyle = "TableStyleMedium2"
+    lo.TableStyle = "TableStyleMedium4"
     ' オートフィルタ設定
     lo.ShowAutoFilter = True
     ' 縞模様
@@ -275,6 +275,7 @@ Sub 吹き出し一覧更新()
                         .Range(COL_REVIEW_COMMENT).Value = shape.TextFrame2.TextRange.Characters.Text
                         .Range(COL_SHEET_NAME).Value = "=HYPERLINK(""#'" + sheet.name + "'!" + shape.TopLeftCell.Address + """,""" + sheet.name + """)"
                         .Range(COL_KIND).Value = "未修正"
+                        .Range(COL_REVIEW_COMMENT).Interior.Color = shape.Fill.ForeColor.RGB
                     End With
                     addCnt = addCnt + 1
                 End If
