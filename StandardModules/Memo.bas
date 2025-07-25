@@ -18,7 +18,7 @@ Function 吹き出し作成() As shape
         .Adjustments.Item(4) = -0.15919
 
         '入力文字
-        .TextFrame2.TextRange.Characters.text = "" & Chr(13) & "XXXX"
+        .TextFrame2.TextRange.Characters.Text = "" & Chr(13) & "XXXX"
 
         'フォント
         With .TextFrame2.TextRange.Font
@@ -56,7 +56,7 @@ Sub 吹き出し追加_赤()
         '文字色
         .TextFrame2.TextRange.Font.Fill.ForeColor.RGB = RGB(255, 0, 0)
         '入力文字
-        .TextFrame2.TextRange.Characters.text = "" & Chr(13) & ""
+        .TextFrame2.TextRange.Characters.Text = "" & Chr(13) & ""
     End With
 
 End Sub
@@ -73,7 +73,7 @@ Sub 吹き出し追加_黄()
         '文字色
         .TextFrame2.TextRange.Font.Fill.ForeColor.RGB = RGB(0, 0, 0)
         '入力文字
-        .TextFrame2.TextRange.Characters.text = "" & Chr(13) & ""
+        .TextFrame2.TextRange.Characters.Text = "" & Chr(13) & ""
     End With
 
 End Sub
@@ -90,7 +90,7 @@ Sub 吹き出し追加_青()
         '文字色
         .TextFrame2.TextRange.Font.Fill.ForeColor.RGB = RGB(0, 112, 192)
         '入力文字
-        .TextFrame2.TextRange.Characters.text = "" & Chr(13) & ""
+        .TextFrame2.TextRange.Characters.Text = "" & Chr(13) & ""
     End With
 
 End Sub
@@ -107,7 +107,7 @@ Sub 吹き出し追加_緑()
         '文字色
         .TextFrame2.TextRange.Font.Fill.ForeColor.RGB = RGB(84, 130, 53)
         '入力文字
-        .TextFrame2.TextRange.Characters.text = "" & Chr(13) & ""
+        .TextFrame2.TextRange.Characters.Text = "" & Chr(13) & ""
     End With
 
 End Sub
@@ -124,7 +124,7 @@ Sub 吹き出し追加_紫()
         '文字色
         .TextFrame2.TextRange.Font.Fill.ForeColor.RGB = RGB(133, 61, 13)
         '入力文字
-        .TextFrame2.TextRange.Characters.text = "" & Chr(13) & ""
+        .TextFrame2.TextRange.Characters.Text = "" & Chr(13) & ""
     End With
 
 End Sub
@@ -272,8 +272,9 @@ Sub 吹き出し一覧更新()
                     'レコード追加し登録する
                     With listObj.ListRows.Add
                         .Range(COL_SHAPE_ID).Value = shape.name
-                        .Range(COL_REVIEW_COMMENT).Value = shape.TextFrame2.TextRange.Characters.text
+                        .Range(COL_REVIEW_COMMENT).Value = shape.TextFrame2.TextRange.Characters.Text
                         .Range(COL_SHEET_NAME).Value = "=HYPERLINK(""#'" + sheet.name + "'!" + shape.TopLeftCell.Address + """,""" + sheet.name + """)"
+                        .Range(COL_KIND).Value = "未修正"
                     End With
                     addCnt = addCnt + 1
                 End If
@@ -297,7 +298,7 @@ Sub 吹き出し一覧更新()
             '確認日が記載されている and 確認者が記載されている
             '対応区分が「対応済み」「対応不要」「重複」の場合
             If Len(.Range(COL_CHECK_DATE).Value) > 0 And Len(.Range(COL_CHECK_ACTOR).Value) > 0 And _
-               (.Range(COL_KIND).Value = "対応済み" Or .Range(COL_KIND).Value = "対応不要" Or .Range(COL_KIND).Value = "重複") Then
+               (.Range(COL_KIND).Value = "対応完了" Or .Range(COL_KIND).Value = "対応不要" Or .Range(COL_KIND).Value = "重複") Then
 
                 'シート名取得
                 Dim sheetName As String
@@ -321,6 +322,18 @@ Sub 吹き出し一覧更新()
 
     Next
     Application.AutoCorrect.AutoFillFormulasInLists = True
+    
+    '入力規則を設定
+    Dim listItems As String
+    listItems = "未修正,修正済み,差し戻し,対応完了,対応不要,重複"
+    Dim targetRange As Range
+    Set targetRange = revSheet.Range("F2:F" & listObj.Range.Rows.Count)
+    With targetRange.Validation
+        .Delete
+        .Add Type:=xlValidateList, AlertStyle:=xlValidAlertStop, Operator:=xlBetween, Formula1:=listItems
+        .IgnoreBlank = True
+        .InCellDropdown = True
+    End With
 
     Worksheets(1).Select
     Worksheets(1).Tab.Color = RGB(255, 255, 0)
@@ -340,3 +353,4 @@ Sub 吹き出し一覧更新()
     End If
 
 End Sub
+
