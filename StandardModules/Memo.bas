@@ -334,6 +334,25 @@ Sub 吹き出し一覧更新()
         .IgnoreBlank = True
         .InCellDropdown = True
     End With
+    
+    '条件付き書式を設定
+    If Not listObj.DataBodyRange Is Nothing Then
+        Dim myRange As Range
+        Set myRange = listObj.DataBodyRange
+        myRange.FormatConditions.Delete
+        With myRange.FormatConditions.Add( _
+            Type:=xlExpression, _
+            Formula1:="=OR($F2=""対応完了"",$F2=""対応不要"",$F2=""重複"")")
+            .Interior.Color = RGB(220, 220, 220)
+            .Font.Color = RGB(50, 50, 50)
+        End With
+        With myRange.FormatConditions.Add( _
+            Type:=xlExpression, _
+            Formula1:="=OR($F2=""修正済み"")")
+            .Interior.Color = RGB(198, 239, 206)
+            .Font.Color = RGB(0, 97, 0)
+        End With
+    End If
 
     Worksheets(1).Select
     Worksheets(1).Tab.Color = RGB(255, 255, 0)
